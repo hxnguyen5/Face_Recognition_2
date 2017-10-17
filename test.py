@@ -35,7 +35,7 @@ print 'Loading training data...'
 
 #d.write("Setting up")
 model = cv2.face.createEigenFaceRecognizer()
-## model = cv2.createEigenFaceRecognizer()if use OpenCV 3.2
+## model = cv2.createEigenFaceRecognizer()if use OpenCV 2.7
 ### No comments
 model.load("opencv/training.xml")
 
@@ -57,7 +57,7 @@ while True:
                 minNeighbors=5,
                 minSize=(30, 30),
                 flags = cv2.CASCADE_SCALE_IMAGE
-                ## flags=cv2.cv.CV_HAAR_SCALE_IMAGE if use OpenCV 3.2
+                ## flags=cv2.cv.CV_HAAR_SCALE_IMAGE if use OpenCV 2.7
         )
 
         # Draw a rectangle around the faces
