@@ -34,7 +34,9 @@ faceCascade = cv2.CascadeClassifier("opencv/haarcascade_frontalface_default.xml"
 print 'Loading training data...'
 
 #d.write("Setting up")
-model = cv2.createEigenFaceRecognizer()
+model = cv2.face.createEigenFaceRecognizer()
+## model = cv2.createEigenFaceRecognizer()if use OpenCV 3.2
+### No comments
 model.load("opencv/training.xml")
 
 print 'Training data loaded!'
@@ -54,7 +56,8 @@ while True:
                 scaleFactor=1.3,
                 minNeighbors=5,
                 minSize=(30, 30),
-                flags=cv2.cv.CV_HAAR_SCALE_IMAGE
+                flags = cv2.CASCADE_SCALE_IMAGE
+                ## flags=cv2.cv.CV_HAAR_SCALE_IMAGE if use OpenCV 3.2
         )
 
         # Draw a rectangle around the faces

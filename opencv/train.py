@@ -105,7 +105,8 @@ if __name__ == '__main__':
 
 	# Train model
 	print ('Training model...')
-	model = cv2.createEigenFaceRecognizer()
+	model = cv2.face.createEigenFaceRecognizer()
+	## model = cv2.createEigenFaceRecognizer()if use OpenCV 2.X 
 	model.train(np.asarray(faces), np.asarray(labels))
 
 	# Save model results
@@ -113,9 +114,11 @@ if __name__ == '__main__':
 	print ('Training data saved to', config.TRAINING_FILE)
 
 	# Save mean and eignface images which summarize the face recognition model.
-	mean = model.getMat("mean").reshape(faces[0].shape)
+	mean = model.getMean().reshape(faces[0].shape)
+	## mean = model.getMat("mean").reshape(faces[0].shape)if use OpenCV 3.2
 	cv2.imwrite(MEAN_FILE, normalize(mean, 0, 255, dtype=np.uint8))
-	eigenvectors = model.getMat("eigenvectors")
+	eigenvectors = model.getEigenVectors()
+	## eigenvectors = model.getMat("eigenvectors")if use OpenCV 3.2
 	pos_eigenvector = eigenvectors[:,0].reshape(faces[0].shape)
 	cv2.imwrite(POSITIVE_EIGENFACE_FILE, normalize(pos_eigenvector, 0, 255, dtype=np.uint8))
 	neg_eigenvector = eigenvectors[:,1].reshape(faces[0].shape)
